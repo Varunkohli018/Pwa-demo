@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple PWA Demo</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2F3BA2" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 40px 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #2F3BA2;
+    }
+    p {
+      color: #333;
+    }
+    .status {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 Simple PWA Demo</h1>
+  <p>This is a Progressive Web App. You can install it on your device.</p>
+  <div class="status" id="status"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function(reg) {
+          document.getElementById('status').innerText = '✅ Service Worker Registered';
+        })
+        .catch(function(error) {
+          document.getElementById('status').innerText = '❌ Registration failed: ' + error;
+        });
+    } else {
+      document.getElementById('status').innerText = '❌ Service Worker not supported';
+    }
+  </script>
+</body>
+</html>
